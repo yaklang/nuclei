@@ -35,6 +35,10 @@ func EvalAsBool(expression string, parameters map[string]interface{}) (bool, err
 	return resultb, nil
 }
 
+func ExecScript(code string, parameters map[string]interface{}) (map[string]interface{}, error) {
+	return starlight.Eval(code, parameters, nil)
+}
+
 func wrapResult(expr string) string {
 	return fmt.Sprintf("%s=%s", resultPlaceholder, expr)
 }

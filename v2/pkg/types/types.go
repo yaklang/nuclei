@@ -11,7 +11,9 @@ type Options struct {
 	// ExcludeTags is the list of tags to exclude
 	ExcludeTags goflags.StringSlice
 	// Workflows specifies any workflows to run by nuclei
-	Workflows goflags.StringSlice
+	Workflows         goflags.StringSlice
+	AdvancedWorkflows goflags.StringSlice
+	Variables         goflags.StringSlice
 	// Templates specifies the template/templates to use
 	Templates goflags.StringSlice
 	// 	ExcludedTemplates  specifies the template/templates to exclude

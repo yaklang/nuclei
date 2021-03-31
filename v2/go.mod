@@ -3,7 +3,6 @@ module github.com/projectdiscovery/nuclei/v2
 go 1.15
 
 require (
-	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/andygrunwald/go-jira v1.13.0
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
 	github.com/blang/semver v3.5.1+incompatible
@@ -17,7 +16,6 @@ require (
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-retryablehttp v0.6.8 // indirect
 	github.com/json-iterator/go v1.1.10
-	github.com/julienschmidt/httprouter v1.3.0
 	github.com/karrick/godirwalk v1.16.1
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/mattn/go-runewidth v0.0.10 // indirect
@@ -31,6 +29,7 @@ require (
 	github.com/projectdiscovery/goflags v0.0.4
 	github.com/projectdiscovery/gologger v1.1.4
 	github.com/projectdiscovery/hmap v0.0.1
+	github.com/projectdiscovery/mapsutil v0.0.1 // indirect
 	github.com/projectdiscovery/rawhttp v0.0.6
 	github.com/projectdiscovery/retryabledns v1.0.10
 	github.com/projectdiscovery/retryablehttp-go v1.0.1
@@ -39,7 +38,6 @@ require (
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/rs/xid v1.2.1
 	github.com/segmentio/ksuid v1.0.3
-	github.com/spaolacci/murmur3 v1.1.0
 	github.com/spf13/cast v1.3.1
 	github.com/stretchr/testify v1.7.0
 	github.com/syndtr/goleveldb v1.0.0

@@ -2,6 +2,8 @@ package runner
 
 import (
 	"github.com/projectdiscovery/gologger"
+	"github.com/projectdiscovery/mapsutil"
+	"github.com/projectdiscovery/nuclei/v2/pkg/output"
 	"github.com/projectdiscovery/nuclei/v2/pkg/templates"
 	"github.com/remeh/sizedwaitgroup"
 	"go.uber.org/atomic"
@@ -47,4 +49,32 @@ func (r *Runner) processWorkflowWithList(template *templates.Template) bool {
 	})
 	wg.Wait()
 	return results.Load()
+}
+
+func (r *Runner) processTemplateWithResults(URL string, template *templates.Template) (map[interface{}]interface{}, error) {
+	results := make(map[string]interface{})
+	err := template.Executer.ExecuteWithResults(URL, func(result *output.InternalWrappedEvent) {
+		results = mapsutil.MergeMaps(results, result.OperatorsResult.DynamicValues)
+		results = mapsutil.MergeMaps(results, result.OperatorsResult.PayloadValues)
+		for k, v := range result.OperatorsResult.Extracts {
+			results[k] = v
+		}
+		for k, v := range result.OperatorsResult.Matches {
+			results[k] = v
+		}
+		results["extracted"] = result.OperatorsResult.Extracted
+		results["matched"] = result.OperatorsResult.Matched
+		results["output_extracts"] = result.OperatorsResult.OutputExtracts
+
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	cresults := make(map[interface{}]interface{})
+	for k, v := range results {
+		cresults[k] = v
+	}
+
+	return cresults, nil
 }

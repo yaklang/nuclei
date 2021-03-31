@@ -2,12 +2,15 @@ package runner
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path"
 	"strings"
 
 	"github.com/logrusorgru/aurora"
+	"github.com/projectdiscovery/goflags"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/hmap/store/hybrid"
 	"github.com/projectdiscovery/nuclei/v2/internal/collaborator"
@@ -18,6 +21,7 @@ import (
 	"github.com/projectdiscovery/nuclei/v2/pkg/projectfile"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/clusterer"
+	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/starlight"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/headless/engine"
 	"github.com/projectdiscovery/nuclei/v2/pkg/reporting"
 	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/exporters/disk"
@@ -224,6 +228,40 @@ func (r *Runner) Close() {
 func (r *Runner) RunEnumeration() {
 	defer r.Close()
 
+	// handle advanced workflows
+	vars, err := r.parseVariables(r.options.Variables)
+	if err != nil {
+		gologger.Fatal().Msgf("%s", err)
+	}
+	// run templates as callable function
+	vars["run"] = func(template string, args map[interface{}]interface{}) map[interface{}]interface{} {
+		t, err := r.parseTemplateFile(template)
+		if err != nil {
+			gologger.Fatal().Msgf("Could not parse file '%s': %s\n", template, err)
+		}
+		res, err := r.processTemplateWithResults(args["URL"].(string), t)
+		if err != nil {
+			gologger.Fatal().Msgf("%s", err)
+		}
+		return res
+	}
+	for _, advancedWorkflow := range r.options.AdvancedWorkflows {
+		code, err := ioutil.ReadFile(advancedWorkflow)
+		if err != nil {
+			gologger.Fatal().Msgf("%s", err)
+		}
+		r.hostMap.Scan(func(k, _ []byte) error {
+			URL := string(k)
+			vars["URL"] = URL
+			res, err := starlight.ExecScript(string(code), vars)
+			if err != nil {
+				gologger.Fatal().Msgf("%s", err)
+			}
+			gologger.Info().Msgf("Advanced workflow '%s': %v", advancedWorkflow, res)
+			return nil
+		})
+	}
+
 	// If we have no templates, run on whole template directory with provided tags
 	if len(r.options.Templates) == 0 && len(r.options.Workflows) == 0 && !r.options.NewTemplates && (len(r.options.Tags) > 0 || len(r.options.ExcludeTags) > 0) {
 		r.options.Templates = append(r.options.Templates, r.options.TemplatesDirectory)
@@ -386,4 +424,18 @@ func (r *Runner) readNewTemplatesFile() ([]string, error) {
 		templatesList = append(templatesList, text)
 	}
 	return templatesList, nil
+}
+
+func (r *Runner) parseVariables(vars goflags.StringSlice) (map[string]interface{}, error) {
+	varsp := make(map[string]interface{})
+	for _, v := range vars {
+		vv := strings.Split(v, "=")
+		if len(vv) != 2 {
+			return nil, errors.New("incorrect variable syntax")
+		}
+		vname := strings.TrimSpace(vv[0])
+		vvalue := strings.TrimSpace(vv[1])
+		varsp[vname] = vvalue
+	}
+	return varsp, nil
 }
