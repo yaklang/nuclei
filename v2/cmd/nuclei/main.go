@@ -86,6 +86,7 @@ based on templates offering massive extensibility and ease of use.`)
 	set.IntVar(&options.PageTimeout, "page-timeout", 20, "Seconds to wait for each page in headless")
 	set.BoolVarP(&options.NewTemplates, "new-templates", "nt", false, "Only run newly added templates")
 	set.StringVarP(&options.DiskExportDirectory, "disk-export", "de", "", "Directory on disk to export reports in markdown to")
+	set.StringSliceVarP(&options.AdvancedWorkflows, "advanced-workflow", "ta", []string{}, "Advanced workflow")
 	_ = set.Parse()
 
 	if cfgFile != "" {

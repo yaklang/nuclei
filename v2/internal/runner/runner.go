@@ -234,7 +234,7 @@ func (r *Runner) RunEnumeration() {
 		gologger.Fatal().Msgf("%s", err)
 	}
 	// run templates as callable function
-	vars["run"] = func(template string, args map[interface{}]interface{}) map[interface{}]interface{} {
+	frunWithValues := func(template string, args map[interface{}]interface{}) map[interface{}]interface{} {
 		t, err := r.parseTemplateFile(template)
 		if err != nil {
 			gologger.Fatal().Msgf("Could not parse file '%s': %s\n", template, err)
@@ -244,6 +244,14 @@ func (r *Runner) RunEnumeration() {
 			gologger.Fatal().Msgf("%s", err)
 		}
 		return res
+	}
+	vars["run_with_values"] = frunWithValues
+	vars["run"] = func(template string, args map[interface{}]interface{}) bool {
+		d := frunWithValues(template, args)
+		if v, ok := d["matched"].(bool); ok {
+			return v
+		}
+		return false
 	}
 	for _, advancedWorkflow := range r.options.AdvancedWorkflows {
 		code, err := ioutil.ReadFile(advancedWorkflow)
