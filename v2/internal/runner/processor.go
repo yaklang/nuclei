@@ -77,7 +77,7 @@ func (r *Runner) RunAdvancedWorkflow(template *templates.Template, input string)
 	vars := make(map[string]interface{})
 	runWithValues := func(templateName string, args map[interface{}]interface{}) map[interface{}]interface{} {
 		// get full template path
-		tpath := r.catalog.GetTemplatesPath([]string{templateName})
+		tpath := r.catalog.GetTemplatesPath([]string{templateName}, false)
 		if len(tpath) == 0 {
 			gologger.Fatal().Msgf("Could not parse file '%s'\n", templateName)
 		}

@@ -285,10 +285,10 @@ func (r *Runner) RunEnumeration() {
 	// pre-parse all the templates, apply filters
 	finalTemplates := []*templates.Template{}
 
-	workflowPaths := r.catalog.GetTemplatesPath(r.options.Workflows)
+	workflowPaths := r.catalog.GetTemplatesPath(r.options.Workflows, false)
 	availableTemplates, _ := r.getParsedTemplatesFor(allTemplates, r.options.Severity, Template)
 	availableWorkflows, workflowCount := r.getParsedTemplatesFor(workflowPaths, r.options.Severity, Workflows)
-	advancedWorkflowPaths := r.catalog.GetTemplatesPath(r.options.AdvancedWorkflows)
+	advancedWorkflowPaths := r.catalog.GetTemplatesPath(r.options.AdvancedWorkflows, false)
 	availableAdvancedWorkflows, advancedWorkflowCount := r.getParsedTemplatesFor(advancedWorkflowPaths, r.options.Severity, AdvancedWorkflow)
 	var unclusteredRequests int64 = 0
 	for _, template := range availableTemplates {
