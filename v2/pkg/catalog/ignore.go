@@ -3,7 +3,7 @@ package catalog
 import (
 	"bufio"
 	"os"
-	"path"
+	"path/filepath"
 	"strings"
 
 	"github.com/projectdiscovery/gologger"
@@ -13,7 +13,7 @@ const nucleiIgnoreFile = ".nuclei-ignore"
 
 // readNucleiIgnoreFile reads the nuclei ignore file marking it in map
 func (c *Catalog) readNucleiIgnoreFile() {
-	file, err := os.Open(path.Join(c.templatesDirectory, nucleiIgnoreFile))
+	file, err := os.Open(filepath.Join(c.templatesDirectory, nucleiIgnoreFile))
 	if err != nil {
 		return
 	}
