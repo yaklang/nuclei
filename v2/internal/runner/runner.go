@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/logrusorgru/aurora"
 	"github.com/projectdiscovery/gologger"
@@ -18,6 +19,8 @@ import (
 	"github.com/projectdiscovery/nuclei/v2/pkg/projectfile"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/clusterer"
+	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/interactsh"
+	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/protocolinit"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/headless/engine"
 	"github.com/projectdiscovery/nuclei/v2/pkg/reporting"
 	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/exporters/disk"
@@ -34,6 +37,7 @@ import (
 type Runner struct {
 	hostMap         *hybrid.HybridMap
 	output          output.Writer
+	interactsh      *interactsh.Client
 	inputCount      int64
 	templatesConfig *nucleiConfig
 	options         *types.Options
@@ -68,6 +72,7 @@ func New(options *types.Options) (*Runner, error) {
 	}
 
 	runner.catalog = catalog.New(runner.options.TemplatesDirectory)
+	runner.catalog.AppendIgnore(runner.templatesConfig.IgnorePaths)
 
 	var reportingOptions *reporting.Options
 	if options.ReportingConfig != "" {
@@ -196,6 +201,23 @@ func New(options *types.Options) (*Runner, error) {
 		}
 	}
 
+	if !options.NoInteractsh {
+		interactshClient, err := interactsh.New(&interactsh.Options{
+			ServerURL:      options.InteractshURL,
+			CacheSize:      int64(options.InteractionsCacheSize),
+			Eviction:       time.Duration(options.InteractionsEviction) * time.Second,
+			ColldownPeriod: time.Duration(options.InteractionsColldownPeriod) * time.Second,
+			PollDuration:   time.Duration(options.InteractionsPollDuration) * time.Second,
+			Output:         runner.output,
+			IssuesClient:   runner.issuesClient,
+			Progress:       runner.progress,
+		})
+		if err != nil {
+			return nil, err
+		}
+		runner.interactsh = interactshClient
+	}
+
 	// Enable Polling
 	if options.BurpCollaboratorBiid != "" {
 		collaborator.DefaultCollaborator.Collab.AddBIID(options.BurpCollaboratorBiid)
@@ -219,6 +241,7 @@ func (r *Runner) Close() {
 	if r.projectFile != nil {
 		r.projectFile.Close()
 	}
+	protocolinit.Close()
 }
 
 // RunEnumeration sets up the input layer for giving input nuclei.
@@ -237,8 +260,8 @@ func (r *Runner) RunEnumeration() {
 		}
 		r.options.Templates = append(r.options.Templates, templatesLoaded...)
 	}
-	includedTemplates := r.catalog.GetTemplatesPath(r.options.Templates)
-	excludedTemplates := r.catalog.GetTemplatesPath(r.options.ExcludedTemplates)
+	includedTemplates := r.catalog.GetTemplatesPath(r.options.Templates, false)
+	excludedTemplates := r.catalog.GetTemplatesPath(r.options.ExcludedTemplates, true)
 	// defaults to all templates
 	allTemplates := includedTemplates
 
@@ -291,6 +314,7 @@ func (r *Runner) RunEnumeration() {
 				IssuesClient: r.issuesClient,
 				Browser:      r.browser,
 				ProjectFile:  r.projectFile,
+				Interactsh:   r.interactsh,
 			}
 			clusterID := fmt.Sprintf("cluster-%s", xid.New().String())
 
@@ -358,6 +382,13 @@ func (r *Runner) RunEnumeration() {
 		}(t)
 	}
 	wgtemplates.Wait()
+
+	if r.interactsh != nil {
+		matched := r.interactsh.Close()
+		if matched {
+			results.CAS(false, true)
+		}
+	}
 	r.progress.Stop()
 
 	if r.issuesClient != nil {
