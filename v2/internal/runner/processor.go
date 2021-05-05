@@ -3,6 +3,7 @@ package runner
 import (
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/mapsutil"
+	"github.com/projectdiscovery/nuclei/v2/pkg/operators"
 	"github.com/projectdiscovery/nuclei/v2/pkg/output"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/starlight"
 	"github.com/projectdiscovery/nuclei/v2/pkg/templates"
@@ -62,7 +63,7 @@ func (r *Runner) processAdvancedWorkflowWithList(template *templates.Template) b
 		wg.Add()
 		go func(URL string) {
 			defer wg.Done()
-			match := r.RunAdvancedWorkflow(template, URL)
+			match, _ := r.RunAdvancedWorkflow(template, URL)
 			results.CAS(false, match)
 		}(URL)
 		return nil
@@ -72,7 +73,13 @@ func (r *Runner) processAdvancedWorkflowWithList(template *templates.Template) b
 }
 
 // RunWorkflow runs a workflow on an input and returns true or false
-func (r *Runner) RunAdvancedWorkflow(template *templates.Template, input string) bool {
+func (r *Runner) RunAdvancedWorkflow(template *templates.Template, input string) (bool, error) {
+	res, err := r.RunAdvancedWorkflowWithResults(template, input)
+	return res != nil, err
+}
+
+// RunWorkflow runs a workflow on an input and returns true or false
+func (r *Runner) RunAdvancedWorkflowWithResults(template *templates.Template, input string) (map[string]interface{}, error) {
 	// run templates as callable function
 	vars := make(map[string]interface{})
 	runWithValues := func(templateName string, args map[interface{}]interface{}) map[interface{}]interface{} {
@@ -85,7 +92,7 @@ func (r *Runner) RunAdvancedWorkflow(template *templates.Template, input string)
 		if err != nil {
 			gologger.Fatal().Msgf("Could not parse file '%s': %s\n", templateName, err)
 		}
-		res, err := processTemplateWithResults(args["URL"].(string), t)
+		res, err := processInternalTemplateWithResults(args["URL"].(string), t)
 		if err != nil {
 			gologger.Fatal().Msgf("%s", err)
 		}
@@ -94,22 +101,17 @@ func (r *Runner) RunAdvancedWorkflow(template *templates.Template, input string)
 	vars["run_with_values"] = runWithValues
 	vars["run"] = func(template string, args map[interface{}]interface{}) bool {
 		d := runWithValues(template, args)
-		if v, ok := d["matched"].(bool); ok {
-			return v
+		if v, ok := d["operatorresults"].(*operators.Result); ok {
+			return v.Matched
 		}
 		return false
 	}
 
 	vars["URL"] = input
-	res, err := starlight.ExecScript(template.Code, vars)
-	if err != nil {
-		gologger.Fatal().Msgf("%s", err)
-	}
-
-	return res != nil
+	return starlight.ExecScript(template.Code, vars)
 }
 
-func processTemplateWithResults(URL string, template *templates.Template) (map[interface{}]interface{}, error) {
+func processInternalTemplateWithResults(URL string, template *templates.Template) (map[interface{}]interface{}, error) {
 	results := make(map[string]interface{})
 	err := template.Executer.ExecuteWithResults(URL, func(result *output.InternalWrappedEvent) {
 		results = mapsutil.MergeMaps(results, result.OperatorsResult.DynamicValues)
@@ -120,10 +122,9 @@ func processTemplateWithResults(URL string, template *templates.Template) (map[i
 		for k, v := range result.OperatorsResult.Matches {
 			results[k] = v
 		}
-		results["extracted"] = result.OperatorsResult.Extracted
-		results["matched"] = result.OperatorsResult.Matched
-		results["output_extracts"] = result.OperatorsResult.OutputExtracts
-
+		results["internalevent"] = result.InternalEvent
+		results["results"] = result.Results
+		results["operatorresults"] = result.OperatorsResult
 	})
 	if err != nil {
 		return nil, err
