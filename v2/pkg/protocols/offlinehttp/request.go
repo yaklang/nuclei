@@ -9,9 +9,9 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/tostring"
+	"github.com/yaklang/nuclei/v2/pkg/output"
+	"github.com/yaklang/nuclei/v2/pkg/protocols"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/common/tostring"
 	"github.com/remeh/sizedwaitgroup"
 )
 

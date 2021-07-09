@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
+	"github.com/yaklang/nuclei/v2/pkg/protocols"
 	"gopkg.in/yaml.v2"
 )
 

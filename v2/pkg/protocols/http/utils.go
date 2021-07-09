@@ -10,8 +10,8 @@ import (
 	"net/http/httputil"
 	"strings"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/generators"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/tostring"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/common/generators"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/common/tostring"
 	"github.com/projectdiscovery/rawhttp"
 )
 

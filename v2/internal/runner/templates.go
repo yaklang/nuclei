@@ -7,9 +7,9 @@ import (
 
 	"github.com/karrick/godirwalk"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
-	"github.com/projectdiscovery/nuclei/v2/pkg/templates"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/pkg/protocols"
+	"github.com/yaklang/nuclei/v2/pkg/templates"
+	"github.com/yaklang/nuclei/v2/pkg/types"
 )
 
 // getParsedTemplatesFor parse the specified templates and returns a slice of the parsable ones, optionally filtered

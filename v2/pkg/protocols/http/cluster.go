@@ -1,7 +1,7 @@
 package http
 
 import (
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/compare"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/common/compare"
 )
 
 // CanCluster returns true if the request can be clustered.

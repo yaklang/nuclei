@@ -3,7 +3,7 @@ package replacer
 import (
 	"strings"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/pkg/types"
 )
 
 // Payload marker constants

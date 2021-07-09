@@ -10,8 +10,8 @@ import (
 
 	"github.com/owenrumney/go-sarif/sarif"
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/format"
+	"github.com/yaklang/nuclei/v2/pkg/output"
+	"github.com/yaklang/nuclei/v2/pkg/reporting/format"
 )
 
 // Exporter is an exporter for nuclei sarif output format.

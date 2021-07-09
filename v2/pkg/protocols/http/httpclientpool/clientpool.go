@@ -15,8 +15,8 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/projectdiscovery/fastdialer/fastdialer"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/protocolstate"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/common/protocolstate"
+	"github.com/yaklang/nuclei/v2/pkg/types"
 	"github.com/projectdiscovery/rawhttp"
 	"github.com/projectdiscovery/retryablehttp-go"
 	"golang.org/x/net/proxy"

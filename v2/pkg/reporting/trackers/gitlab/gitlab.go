@@ -1,8 +1,8 @@
 package gitlab
 
 import (
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/format"
+	"github.com/yaklang/nuclei/v2/pkg/output"
+	"github.com/yaklang/nuclei/v2/pkg/reporting/format"
 	"github.com/xanzy/go-gitlab"
 )
 

@@ -6,8 +6,8 @@ import (
 	"path"
 	"testing"
 
-	"github.com/projectdiscovery/nuclei/v2/internal/testutils"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators"
+	"github.com/yaklang/nuclei/v2/internal/testutils"
+	"github.com/yaklang/nuclei/v2/pkg/operators"
 	"github.com/stretchr/testify/require"
 )
 

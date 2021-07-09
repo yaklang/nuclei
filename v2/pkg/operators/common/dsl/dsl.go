@@ -17,7 +17,7 @@ import (
 	"time"
 
 	"github.com/Knetic/govaluate"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/pkg/types"
 	"github.com/spaolacci/murmur3"
 )
 

@@ -5,10 +5,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators/extractors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators/matchers"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/pkg/operators/extractors"
+	"github.com/yaklang/nuclei/v2/pkg/operators/matchers"
+	"github.com/yaklang/nuclei/v2/pkg/output"
+	"github.com/yaklang/nuclei/v2/pkg/types"
 )
 
 // Match matches a generic data response again a given matcher

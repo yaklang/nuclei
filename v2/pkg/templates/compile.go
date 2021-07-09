@@ -8,12 +8,12 @@ import (
 	"strings"
 
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/executer"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/offlinehttp"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
-	"github.com/projectdiscovery/nuclei/v2/pkg/workflows"
+	"github.com/yaklang/nuclei/v2/pkg/operators"
+	"github.com/yaklang/nuclei/v2/pkg/protocols"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/common/executer"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/offlinehttp"
+	"github.com/yaklang/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/pkg/workflows"
 	"gopkg.in/yaml.v2"
 )
 

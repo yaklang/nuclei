@@ -2,7 +2,7 @@ package workflows
 
 import (
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
+	"github.com/yaklang/nuclei/v2/pkg/output"
 	"github.com/remeh/sizedwaitgroup"
 	"go.uber.org/atomic"
 )

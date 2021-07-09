@@ -6,8 +6,8 @@ import (
 
 	"github.com/projectdiscovery/goflags"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/nuclei/v2/internal/runner"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/internal/runner"
+	"github.com/yaklang/nuclei/v2/pkg/types"
 )
 
 var (

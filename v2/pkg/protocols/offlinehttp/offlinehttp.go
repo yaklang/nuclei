@@ -2,8 +2,8 @@ package offlinehttp
 
 import (
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
+	"github.com/yaklang/nuclei/v2/pkg/operators"
+	"github.com/yaklang/nuclei/v2/pkg/protocols"
 )
 
 // Request is a offline http response processing request

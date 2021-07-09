@@ -11,10 +11,10 @@ import (
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/interactsh/pkg/client"
 	"github.com/projectdiscovery/interactsh/pkg/server"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/progress"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting"
+	"github.com/yaklang/nuclei/v2/pkg/operators"
+	"github.com/yaklang/nuclei/v2/pkg/output"
+	"github.com/yaklang/nuclei/v2/pkg/progress"
+	"github.com/yaklang/nuclei/v2/pkg/reporting"
 	"github.com/valyala/fasttemplate"
 )
 

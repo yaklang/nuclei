@@ -3,7 +3,7 @@ package output
 import (
 	"bytes"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/pkg/types"
 )
 
 // formatScreen formats the output for showing on screen.

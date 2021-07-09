@@ -5,7 +5,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/pkg/types"
 	"github.com/projectdiscovery/retryabledns"
 )
 

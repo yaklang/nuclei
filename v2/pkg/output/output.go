@@ -10,8 +10,8 @@ import (
 	"github.com/logrusorgru/aurora"
 	"github.com/pkg/errors"
 	"github.com/projectdiscovery/interactsh/pkg/server"
-	"github.com/projectdiscovery/nuclei/v2/internal/colorizer"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators"
+	"github.com/yaklang/nuclei/v2/internal/colorizer"
+	"github.com/yaklang/nuclei/v2/pkg/operators"
 )
 
 // Writer is an interface which writes output to somewhere for nuclei events.

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/pkg/output"
+	"github.com/yaklang/nuclei/v2/pkg/types"
 )
 
 // Summary returns a formatted built one line summary of the event

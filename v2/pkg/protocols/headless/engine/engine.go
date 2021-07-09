@@ -12,7 +12,7 @@ import (
 	"github.com/go-rod/rod/lib/launcher"
 	ps "github.com/mitchellh/go-ps"
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/pkg/types"
 )
 
 // Browser is a browser structure for nuclei headless module

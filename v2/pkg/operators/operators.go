@@ -2,8 +2,8 @@ package operators
 
 import (
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators/extractors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators/matchers"
+	"github.com/yaklang/nuclei/v2/pkg/operators/extractors"
+	"github.com/yaklang/nuclei/v2/pkg/operators/matchers"
 )
 
 // Operators contains the operators that can be applied on protocols

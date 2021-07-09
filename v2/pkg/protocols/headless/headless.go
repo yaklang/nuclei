@@ -2,9 +2,9 @@ package headless
 
 import (
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/headless/engine"
+	"github.com/yaklang/nuclei/v2/pkg/operators"
+	"github.com/yaklang/nuclei/v2/pkg/protocols"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/headless/engine"
 )
 
 // Request contains a Headless protocol request to be made from a template

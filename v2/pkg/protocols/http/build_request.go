@@ -13,11 +13,11 @@ import (
 
 	"github.com/corpix/uarand"
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/expressions"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/generators"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/replacer"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/http/race"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/http/raw"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/common/expressions"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/common/generators"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/common/replacer"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/http/race"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/http/raw"
 	"github.com/projectdiscovery/rawhttp"
 	"github.com/projectdiscovery/retryablehttp-go"
 )

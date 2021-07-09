@@ -4,14 +4,14 @@ import (
 	"strings"
 
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/dedupe"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/exporters/disk"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/exporters/sarif"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/trackers/github"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/trackers/gitlab"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/trackers/jira"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/pkg/output"
+	"github.com/yaklang/nuclei/v2/pkg/reporting/dedupe"
+	"github.com/yaklang/nuclei/v2/pkg/reporting/exporters/disk"
+	"github.com/yaklang/nuclei/v2/pkg/reporting/exporters/sarif"
+	"github.com/yaklang/nuclei/v2/pkg/reporting/trackers/github"
+	"github.com/yaklang/nuclei/v2/pkg/reporting/trackers/gitlab"
+	"github.com/yaklang/nuclei/v2/pkg/reporting/trackers/jira"
+	"github.com/yaklang/nuclei/v2/pkg/types"
 	"go.uber.org/multierr"
 )
 

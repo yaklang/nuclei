@@ -2,7 +2,7 @@ package runner
 
 import (
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/nuclei/v2/pkg/templates"
+	"github.com/yaklang/nuclei/v2/pkg/templates"
 	"github.com/remeh/sizedwaitgroup"
 	"go.uber.org/atomic"
 )

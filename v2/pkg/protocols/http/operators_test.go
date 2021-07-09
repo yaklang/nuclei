@@ -5,11 +5,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/projectdiscovery/nuclei/v2/internal/testutils"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators/extractors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators/matchers"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
+	"github.com/yaklang/nuclei/v2/internal/testutils"
+	"github.com/yaklang/nuclei/v2/pkg/operators"
+	"github.com/yaklang/nuclei/v2/pkg/operators/extractors"
+	"github.com/yaklang/nuclei/v2/pkg/operators/matchers"
+	"github.com/yaklang/nuclei/v2/pkg/output"
 	"github.com/stretchr/testify/require"
 )
 

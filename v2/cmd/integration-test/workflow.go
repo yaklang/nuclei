@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 
 	"github.com/julienschmidt/httprouter"
-	"github.com/projectdiscovery/nuclei/v2/internal/testutils"
+	"github.com/yaklang/nuclei/v2/internal/testutils"
 )
 
 var workflowTestcases = map[string]testutils.TestCase{

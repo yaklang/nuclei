@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	"github.com/julienschmidt/httprouter"
-	"github.com/projectdiscovery/nuclei/v2/internal/testutils"
+	"github.com/yaklang/nuclei/v2/internal/testutils"
 )
 
 var httpTestcases = map[string]testutils.TestCase{

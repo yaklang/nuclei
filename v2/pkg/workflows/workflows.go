@@ -1,6 +1,6 @@
 package workflows
 
-import "github.com/projectdiscovery/nuclei/v2/pkg/protocols"
+import "github.com/yaklang/nuclei/v2/pkg/protocols"
 
 // Workflow is a workflow to execute with chained requests, etc.
 type Workflow struct {

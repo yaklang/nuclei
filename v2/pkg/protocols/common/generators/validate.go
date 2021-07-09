@@ -7,7 +7,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/pkg/types"
 )
 
 // validate validates the payloads if any.

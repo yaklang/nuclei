@@ -8,8 +8,8 @@ import (
 
 	"github.com/google/go-github/github"
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/format"
+	"github.com/yaklang/nuclei/v2/pkg/output"
+	"github.com/yaklang/nuclei/v2/pkg/reporting/format"
 )
 
 // Integration is a client for a issue tracker integration

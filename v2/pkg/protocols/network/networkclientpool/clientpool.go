@@ -2,8 +2,8 @@ package networkclientpool
 
 import (
 	"github.com/projectdiscovery/fastdialer/fastdialer"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/protocolstate"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/yaklang/nuclei/v2/pkg/protocols/common/protocolstate"
+	"github.com/yaklang/nuclei/v2/pkg/types"
 )
 
 var (

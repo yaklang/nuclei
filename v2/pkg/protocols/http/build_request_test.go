@@ -4,7 +4,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/projectdiscovery/nuclei/v2/internal/testutils"
+	"github.com/yaklang/nuclei/v2/internal/testutils"
 	"github.com/stretchr/testify/require"
 )
 
