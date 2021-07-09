@@ -9,7 +9,6 @@ require (
 	github.com/corpix/uarand v0.1.1
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/go-rod/rod v0.91.1
-	github.com/yaklang/nuclei/v2 v2.3.9
 	github.com/golang/protobuf v1.4.3 // indirect
 	github.com/google/go-github v17.0.0+incompatible
 	github.com/google/go-github/v32 v32.1.0
