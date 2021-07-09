@@ -26,7 +26,7 @@ require (
 	github.com/owenrumney/go-sarif v1.0.4
 	github.com/pkg/errors v0.9.1
 	github.com/projectdiscovery/clistats v0.0.8
-	github.com/projectdiscovery/collaborator v0.0.2
+	github.com/projectdiscovery/collaborator v0.0.2 // indirect
 	github.com/projectdiscovery/fastdialer v0.0.8
 	github.com/projectdiscovery/goflags v0.0.4
 	github.com/projectdiscovery/gologger v1.1.4
